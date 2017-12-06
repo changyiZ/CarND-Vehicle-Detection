@@ -111,14 +111,14 @@ Here's a [link to my video result](./project_video_out.mp4)
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
-### Here are the corresponding heatmap of the test image:
+Here are the corresponding heatmap of the test image:
 
 ![alt text][image4]
 
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from the frame:
+Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from the frame:
 ![alt text][image8]
 
-### Here the resulting bounding boxes are drawn onto the frame:
+Here the resulting bounding boxes are drawn onto the frame:
 ![alt text][image7]
 
 
@@ -129,5 +129,11 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+According to the result video, the detected bounding boxes sometimes may not cover the vehicle perfectly. It seems like the collision volume is not big enough to be safety.
+I think decreasing the threshold of heatmap would be helpful for that, but meanwhile it would introduce more false positives.
+Another way to improve the heatmap is to scan the image more quickly.
+The pipeline may also failed for vehicles that significantly change position from one frame to the next, also dues to relatively slow calculation performance.
+The evaluation of feature vectors is currently done sequentially, but could be parallelized.
+Maybe some deep learning calculation based on GPU would be better, like the solution provided by [YOLO](https://pjreddie.com/darknet/yolo/).
+
 
