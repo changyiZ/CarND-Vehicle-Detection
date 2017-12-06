@@ -129,11 +129,11 @@ Here the resulting bounding boxes are drawn onto the frame:
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-According to the result video, the detected bounding boxes sometimes may not cover the vehicle perfectly. It seems like the collision volume is not big enough to be safety.
+According to the result video, the detected bounding boxes sometimes may not cover the vehicle perfectly. It seems like the collision volume is not big enough to be safety.<br>
 I think decreasing the threshold of heatmap would be helpful for that, but meanwhile it would introduce more false positives.
-Another way to improve the heatmap is to scan the image more quickly.
-The pipeline may also failed for vehicles that significantly change position from one frame to the next, also dues to relatively slow calculation performance.
-The evaluation of feature vectors is currently done sequentially, but could be parallelized.
+Another way to improve the heatmap is to scan the image more quickly.<br>
+The pipeline may also failed for vehicles that significantly change position from one frame to the next, also dues to relatively slow calculation performance.<br>
+The evaluation of feature vectors is currently done sequentially, but could be parallelized.<br>
 Maybe some deep learning calculation based on GPU would be better, like the solution provided by [YOLO](https://pjreddie.com/darknet/yolo/).
 
 
